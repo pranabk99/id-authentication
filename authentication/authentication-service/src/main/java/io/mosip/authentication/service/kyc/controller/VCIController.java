@@ -119,6 +119,7 @@ public class VCIController {
 													 @PathVariable("OIDC-Client-Id") String oidcClientId, 
 													 HttpServletRequest request)
 			throws IdAuthenticationBusinessException, IdAuthenticationAppException, IdAuthenticationDaoException {
+		mosipLogger.info("all VciExchangeRequestDTO : {}", vciExchangeRequestDTO);
 		if(request instanceof ObjectWithMetadata) {
 			ObjectWithMetadata requestWrapperWithMetadata = (ObjectWithMetadata) request;
 
