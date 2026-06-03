@@ -120,6 +120,10 @@ public class VCIController {
 													 HttpServletRequest request)
 			throws IdAuthenticationBusinessException, IdAuthenticationAppException, IdAuthenticationDaoException {
 		mosipLogger.info("all VciExchangeRequestDTO : {}", vciExchangeRequestDTO);
+		mosipLogger.info("individual id : {}", vciExchangeRequestDTO.getIndividualId());
+		mosipLogger.info("individualId type : {}", vciExchangeRequestDTO.getIndividualIdType());
+		mosipLogger.info("request time : {}", vciExchangeRequestDTO.getRequestTime());
+		mosipLogger.info("request time : {}", vciExchangeRequestDTO.getTransactionID());
 		if(request instanceof ObjectWithMetadata) {
 			ObjectWithMetadata requestWrapperWithMetadata = (ObjectWithMetadata) request;
 
