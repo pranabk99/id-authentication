@@ -403,6 +403,7 @@ public class IdAuthSecurityManager {
 
 	private String newHash(String id) throws IdAuthenticationBusinessException {
 		Integer idModulo = getSaltKeyForHashOfId(id);
+		System.out.println("idModule: "+idModulo);
 		return doGetHashForIdAndSaltKey(id, idModulo);
 	}
 	
@@ -414,7 +415,9 @@ public class IdAuthSecurityManager {
 	public String hash(String id) throws IdAuthenticationBusinessException {
 		String hashWithNewMethod = null;
 		try {
+			System.out.println("uin/vid : "+ id);
 			hashWithNewMethod = newHash(id);
+			System.out.println("hash value for uin/vid : "+ hashWithNewMethod);
 		} catch (IdAuthenticationBusinessException e) {
 			//If salt key is not present in the DB, this error will occur.
 			if (e.getErrorCode().equals(IdAuthenticationErrorConstants.ID_NOT_AVAILABLE.getErrorCode())) {
@@ -458,6 +461,7 @@ public class IdAuthSecurityManager {
 
 	private String doGetHashForIdAndSaltKey(String id, Integer idModulo) throws IdAuthenticationBusinessException {
 		String hashSaltValue = uinHashSaltRepo.retrieveSaltById(idModulo);
+		System.out.println("hash Salt Value :" + hashSaltValue);
 		if (hashSaltValue != null) {
 			try {
 				return HMACUtils2.digestAsPlainTextWithSalt(id.getBytes(), hashSaltValue.getBytes());
